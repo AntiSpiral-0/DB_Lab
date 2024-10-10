@@ -40,3 +40,7 @@ LEFT JOIN date_total tot
 ON tot.visningar = tab.visningar;   
 
 
+
+
+
+
