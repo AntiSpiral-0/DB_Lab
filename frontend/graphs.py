@@ -1,16 +1,31 @@
+import streamlit as st
+import matplotlib.pyplot as plt
 from utils.query_database import QueryDatabase
-import plotly.express as px
-import streamlit as st 
-
+# one of the tables is geografi and this is one graph// again i had problems with the path so i kept adding the specific path
 class ViewsTrend:
     def __init__(self) -> None:
-        self.df = QueryDatabase("SELECT * FROM marts.views_per_date").df
-        print(self.df)
+
+        self._db = QueryDatabase('10_lab_overview/backend/youtube_data.db')
+        self._views_data = self._db.fetch_table("SELECT * FROM marts.mart_geografi;")
 
     def display_plot(self):
-        fig = px.line(self.df, x="Datum", y="Visningar")
-        st.markdown("## Antal visningar under senaste månaden")
-        st.plotly_chart(fig)
+        df = self._views_data
+        st.markdown("## Visningstrender")
 
-# create more graphs here
+       
+        fig, ax = plt.subplots()
+        ax.plot(df['date_view'], df['views'], marker='o')
+
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Views")
+        ax.set_title("Trend of Views Over Time")
+
+        st.pyplot(fig)  
+
+
+
+
+    
+
+
 

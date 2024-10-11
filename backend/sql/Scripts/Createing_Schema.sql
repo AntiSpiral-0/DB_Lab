@@ -42,3 +42,25 @@ SELECT
     AVG(Visningar) AS average_views_per_video,
     MAX(Visningar) AS peak_views
 FROM youtube_data.innehall.tabelldata;
+
+CREATE TABLE marts.kpi_geografi AS 
+SELECT
+    Geografi AS viewer_location,
+    SUM(Visningar) AS total_views,
+    AVG("Genomsnittlig visningslängd") AS avg_watch_time,
+    SUM("Visningstid (timmar)") AS total_watch_time_hours,
+    COUNT(DISTINCT Videotitel) AS total_videos_viewed
+FROM youtube_data.geografi.tabelldata
+GROUP BY Geografi;
+
+
+CREATE TABLE marts.kpi_operating_systems AS 
+SELECT
+    Operativsystem AS operating_system,
+    SUM(Visningar) AS total_views,
+    AVG("Genomsnittlig visningslängd") AS avg_watch_duration,
+    SUM("Visningstid (timmar)") AS total_watch_time_hours,
+    COUNT(DISTINCT Videotitel) AS total_videos_viewed
+FROM youtube_data.operativsystem.tabelldata
+GROUP BY Operativsystem;
+

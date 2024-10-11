@@ -1,18 +1,16 @@
-import streamlit as st 
-from frontend.kpi import ContentKPI
+import streamlit as st
+from frontend.kpi import ContentKPI, DeviceKPI
 from frontend.graphs import ViewsTrend
 
-
-# device_kpi = DeviceKPI()
 content_kpi = ContentKPI()
+device_kpi = DeviceKPI()
 views_graph = ViewsTrend()
 
 def layout():
-    st.markdown("# The data driven youtuber")
-    st.markdown("Den här dashboarden syftar till att utforska datan i min youtubekanal")
-    # device_kpi.display_device_views()
-    # device_kpi.display_device_summary()
-    content_kpi.display_content()
+    st.markdown("# Data-Driven YouTuber Dashboard")
+    st.markdown("Den här dashboarden syftar till att utforska datan i min YouTube-kanal")
+    content_kpi.display_Content_kpis() # my own content kpi here
+    device_kpi.display_device_kpis()
     views_graph.display_plot()
 
 if __name__ == "__main__":

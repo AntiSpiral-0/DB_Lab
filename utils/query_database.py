@@ -1,7 +1,9 @@
-from backend.database import DatabaseDataFrame
-from backend.constants import DATABASE_PATH
+import duckdb
+import pandas as pd
 
-class QueryDatabase: 
-    def __init__(self, sql_query) -> None:
-        with DatabaseDataFrame(DATABASE_PATH) as db:
-            self.df = db.query(sql_query)
+class QueryDatabase:
+    def __init__(self, db_path: str):
+        self.connection = duckdb.connect(db_path)
+
+    def fetch_table(self, query: str) -> pd.DataFrame:
+        return self.connection.execute(query).df()
