@@ -43,7 +43,7 @@ class geographyKPI:
         self._geografi_data = self._db.fetch_table("SELECT * FROM marts.kpi_geografi ;")
         
 
-    def display_Content_kpis(self):
+    def display_geografi_kpis(self):
         df = self._geografi_data
         st.markdown("- KPIer för geografi")
         st.dataframe(df)#display
