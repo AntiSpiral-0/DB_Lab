@@ -1,12 +1,13 @@
 import streamlit as st
-from frontend.kpi import ContentKPI, DeviceKPI
+from frontend.kpi import ContentKPI, DeviceKPI, osKPI,geographyKPI
 from frontend.graphs import ViewsTrend
 
 content_kpi = ContentKPI()
 device_kpi = DeviceKPI()
-geografi_kpi = geographyKPI()
+geografi_kpi = geographyKPI()  # Make sure this line comes after the class definition
 views_graph = ViewsTrend()
 os_kpi = osKPI()
+
 
 
 def layout():

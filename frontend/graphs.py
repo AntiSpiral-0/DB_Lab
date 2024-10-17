@@ -5,7 +5,7 @@ from utils.query_database import QueryDatabase
 class ViewsTrend:
     def __init__(self) -> None:
 
-        self._db = QueryDatabase('10_lab_overview/backend/youtube_data.db')
+        self._db = QueryDatabase('C:/Users/Lenovo/OneDrive/Documents/Coding Projects/Lab/10_lab_overview/backend/youtube_data.db')
         self._views_data = self._db.fetch_table("SELECT * FROM marts.mart_geografi;")
 
     def display_plot(self):
@@ -19,7 +19,7 @@ class ViewsTrend:
         ax.set_xlabel("Date")
         ax.set_ylabel("Views")
         ax.set_title("Trend of Views Over Time")
-
+        plt.xticks(rotation=45)
         st.pyplot(fig)  
 
 
