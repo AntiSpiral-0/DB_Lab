@@ -1,9 +1,10 @@
 import duckdb
-import pandas as pd
+from pathlib import Path
 
 class QueryDatabase:
-    def __init__(self, db_path: str):
-        self.connection = duckdb.connect(db_path)
+    def __init__(self, db_path: Path) -> None:
+        self.connection = duckdb.connect(str(db_path))
 
-    def fetch_table(self, query: str) -> pd.DataFrame:
+    def fetch_table(self, query: str):
         return self.connection.execute(query).df()
+

@@ -1,10 +1,10 @@
 import streamlit as st
 from utils.query_database import QueryDatabase
-
+from pathlib import Path
 class DeviceKPI:
     def __init__(self) -> None:
-        # Correct absolute path
-        self._db = QueryDatabase('C:/Users/Lenovo/OneDrive/Documents/Coding Projects/Lab/10_lab_overview/backend/youtube_data.db')
+        db_path = Path(__file__).parent.parent / "backend" / "youtube_data.db"
+        self._db = QueryDatabase(db_path)
         self._device_data = self._db.fetch_table("SELECT * FROM marts.mart_device;")
 
     def display_device_kpis(self):
@@ -14,8 +14,8 @@ class DeviceKPI:
 
 class ContentKPI:
     def __init__(self) -> None:
-        # Correct absolute path
-        self._db = QueryDatabase('C:/Users/Lenovo/OneDrive/Documents/Coding Projects/Lab/10_lab_overview/backend/youtube_data.db')
+        db_path = Path(__file__).resolve().parent.parent / "backend" / "youtube_data.db"
+        self._db = QueryDatabase(db_path)
         self._content_data = self._db.fetch_table("SELECT * FROM marts.kpi_dashboard;")
 
     def display_Content_kpis(self):
@@ -25,8 +25,8 @@ class ContentKPI:
 
 class osKPI:
     def __init__(self) -> None:
-        # Correct absolute path
-        self._db = QueryDatabase('C:/Users/Lenovo/OneDrive/Documents/Coding Projects/Lab/10_lab_overview/backend/youtube_data.db')
+        db_path = Path(__file__).resolve().parent.parent / "backend" / "youtube_data.db"
+        self._db = QueryDatabase(db_path)
         self._os_data = self._db.fetch_table("SELECT * FROM marts.kpi_operating_systems;")
 
     def display_os_kpis(self):
@@ -36,7 +36,8 @@ class osKPI:
 
 class geographyKPI:
     def __init__(self) -> None:
-        self._db = QueryDatabase('C:/Users/Lenovo/OneDrive/Documents/Coding Projects/Lab/10_lab_overview/backend/youtube_data.db')
+        db_path = Path(__file__).resolve().parent.parent / "backend" / "youtube_data.db"
+        self._db = QueryDatabase(db_path)
         self._geografi_data = self._db.fetch_table("SELECT * FROM marts.kpi_geografi;")
 
     def display_geografi_kpis(self):
